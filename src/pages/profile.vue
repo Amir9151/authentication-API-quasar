@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md q-ma-xl q-mx-auto" style="max-width: 700px">
-    <q-form @submit.prevent="onSubmit">
+    <q-form @submit.prevent="updateUser">
       <div class="q-mb-lg">
         <q-input
           color="primary"
@@ -8,7 +8,6 @@
           outlined
           v-model="user.first_name"
           label="First Name"
-          @input="updateUser"
         >
           <template v-slot:append>
             <q-icon name="badge" color="primary" />
@@ -22,7 +21,6 @@
           outlined
           v-model="user.last_name"
           label="Last Name"
-          @input="updateUser"
         >
           <template v-slot:append>
             <q-icon name="badge" color="primary" />
@@ -62,7 +60,6 @@
           option-label="title"
           emit-value
           map-options
-          @input="updateUser"
         >
           <template v-slot:append>
             <q-icon name="near_me" color="primary" />
@@ -70,13 +67,14 @@
         </q-select>
       </div>
 
-       <!--<div class="q-mb-lg">
+        <div class="q-mb-lg">
         <q-input
           color="primary"
           label-color="primary"
           outlined
           v-model="user.address"
           label="Address"
+
         >
           <template v-slot:append>
             <q-icon name="near_me" color="primary" />
@@ -98,19 +96,18 @@
         </q-input>
       </div>
 
-      <div class=" q-mb-lg">
+       <div class=" q-mb-lg">
         <q-select
           color="primary"
           outlined
           label-color="primary"
-          v-model="user.gender"
+          v-model="user.gender_id"
           :options="genders"
           label="Gender"
           map-options
           emit-value
           option-value="id"
           option-label="title"
-
         >
           <template v-slot:append>
             <q-icon name="person" color="primary" />
@@ -132,12 +129,12 @@
         </q-input>
       </div>
 
-        <div class="q-mb-lg">
+         <div class="q-mb-lg">
         <q-select
           color="primary"
           outlined
           label-color="primary"
-          v-model="user.major"
+          v-model="user.major_id"
           :options="majors"
           label="Major"
           map-options
@@ -186,17 +183,17 @@
         </q-input>
       </div>
 
-      <div class="q-mb-lg">
+       <div class="q-mb-lg">
         <q-input
           type="textarea"
           color="primary"
           label-color="primary"
           outlined
-          v-model="user.info"
+          v-model="user.information"
           label="Information"
         >
         </q-input>
-      </div>-->
+      </div>
 
       <div class="row">
         <q-space></q-space>
@@ -222,7 +219,7 @@ export default {
         province:"",
         postal_code:"",
         email:"",
-        info:"",
+        information:"",
       },
 
       provinceId:"",
@@ -230,7 +227,8 @@ export default {
 },
 computed:{
   ...mapGetters("info",["provinces","cities","genders","majors","grades"]),
-  ...mapState("info",["first_name","last_name","province","shahr"])
+  ...mapState("info",["first_name","last_name","province","shahr","address",
+  "postal_code","gender","school","major","grade","email","information"])
 
 },
 methods:{
@@ -286,28 +284,23 @@ isValidEmail(email) {
     },
 
 
-// onSubmit(){
-// this.update(this.user)
-// }
 
 },
 mounted(){
-// let userInfo=this.$q.localStorage.getItem("data")
   this.user.first_name=this.first_name
   this.user.last_name=this.last_name
   this.user.province=this.province
   this.user.shahr_id=this.shahr
-  console.log("shahr//",this.shahr)
-// this.user.shahr_id=userInfo.city
-// this.user.address=userInfo.address
-// this.user.postal_code=userInfo.postal_code
-// this.user.gender_id=userInfo.gender
-// this.user.school=userInfo.school
-// this.user.major_id=userInfo.major
-// this.user.grade_id=userInfo.grade
-// this.user.email=userInfo.email
-// this.user.info=userInfo.info
-// console.log(userInfo)
+  this.user.address=this.address
+  this.user.postal_code=this.postal_code
+  this.user.gender_id=this.gender
+  this.user.school=this.school
+  this.user.major_id=this.major
+  this.user.grade_id=this.grade
+  this.user.email=this.email
+  this.user.information=this.information
+  // console.log("info//",this.user.information)
+
 }
 }
 </script>

@@ -7,6 +7,14 @@ first_name:"",
 last_name:"",
 province:"",
 shahr:"",
+address:"",
+postal_code:"",
+gender:"",
+school:"",
+major:"",
+grade:"",
+email:"",
+information:"",
 }
 const getters={
 //Option Information
@@ -28,6 +36,14 @@ getUserData:(state,userData)=>{
   state.last_name=userData.last_name
   state.province=userData.province
   state.shahr=userData.shahr
+  state.address=userData.address
+  state.postal_code=userData.postal_code
+  state.gender=userData.gender
+  state.school=userData.school
+  state.major=userData.major
+  state.grade=userData.grade
+  state.email=userData.email
+  state.information=userData.info
 },
 
 updateUserData:(state,userData)=>{
@@ -35,6 +51,14 @@ updateUserData:(state,userData)=>{
   state.last_name=userData.last_name
   state.province=userData.province
   state.shahr=userData.shahr_id
+  state.address=userData.address
+  state.postal_code=userData.postal_code
+  state.gender=userData.gender
+  state.school=userData.school
+  state.major=userData.major
+  state.grade=userData.grade
+  state.email=userData.email
+  state.information=userData.information
 }
 //update:(state,data)=>state.info=data
 }
@@ -55,8 +79,8 @@ const actions={
   },
 
 
-  updateUserData({commit},userData){
-  console.log("updateUserData:",userData)
+  updateUserData({commit},user){
+  console.log("updateUserData:",user)
   //console.log("updateData province:",userData.province)
    //commit("updateUserData",userData)
 }
