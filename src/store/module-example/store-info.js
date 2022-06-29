@@ -1,5 +1,5 @@
-import { api, axios } from 'boot/axios'
-//import {LocalStorage} from 'quasar'
+import { api } from 'boot/axios'
+import {LocalStorage} from 'quasar'
 
 const state={
 info:{},
@@ -74,35 +74,28 @@ const actions={
 
 
   getUserData({commit},userData){
-    console.log("getData:",userData)
+    console.log("getData:",userData.id)
      commit("getUserData",userData)
+     LocalStorage.set("userId",userData.id)
   },
 
 
-  updateUserData({commit},user){
+  async updateUserData({commit},user){
   console.log("updateUserData:",user)
-  //console.log("updateData province:",userData.province)
-   //commit("updateUserData",userData)
-}
-//   async update({ commit },user) {
-//     console.log("updateUser://",user)
-//     let data=LocalStorage.getItem("data")
-//     //LocalStorage.set("data",user)
-//     //console.log("value",value)
-//     let userId=data.id
-//     let config = {
-//       headers:{
-//          'Access-Control-Allow-Origin': '*',
-//          'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
-//          'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+    let id=LocalStorage.getItem("userId")
+     console.log("id:",id)
+    let config = {
+      headers:{
+         'Access-Control-Allow-Origin': '*',
+         'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
+         'Access-Control-Allow-Headers': 'Content-Type, Authorization'
 
-//       }
+      }
 
-//    }
-//        let response = await api.put(`/user/${userId}`,user,config)
-//         console.log("response:",response)
-//     // commit("update", response.data)
-// },
+   }
+       let response = await api.put(`/user/${id}`,user,config)
+        console.log("response:",response)
+ },
 
 
 
